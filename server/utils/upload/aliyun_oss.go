@@ -6,7 +6,6 @@ import (
 	"github.com/aliyun/aliyun-oss-go-sdk/oss"
 	"go.uber.org/zap"
 	"mime/multipart"
-	"path/filepath"
 )
 
 type AliyunOSS struct{}
@@ -26,17 +25,16 @@ func (*AliyunOSS) UploadFile(file *multipart.FileHeader) (string, string, error)
 	}
 
 	//上传阿里云路径 文件名格式 自己可以改 建议保证唯一性
-	fid := NewFilePath(file.Filename)
-	yunFileTmpPath := filepath.Join("uploads", fid)
+	filePath := NewFilePath(file.Filename)
 
 	// 上传文件流。
-	err = bucket.PutObject(yunFileTmpPath, f)
+	err = bucket.PutObject(filePath, f)
 	if err != nil {
 		global.GVA_LOG.Error("function formUploader.Put() Failed", zap.Any("err", err.Error()))
 		return "", "", errors.New("function formUploader.Put() Failed, err:" + err.Error())
 	}
 
-	return global.GVA_CONFIG.AliyunOSS.BucketUrl + "/" + yunFileTmpPath, yunFileTmpPath, nil
+	return global.GVA_CONFIG.AliyunOSS.BucketUrl + "/" + filePath, filePath, nil
 }
 
 func (*AliyunOSS) DeleteFile(key string) error {
