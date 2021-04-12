@@ -23,6 +23,8 @@ yarn-error.log*
 *.sw?
 
 go.sum
+/server/finish/
+/server/chunk/
 /server/log/
 /server/gva
 /server/gin-vue-admin

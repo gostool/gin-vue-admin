@@ -8,7 +8,7 @@
       </div>
     </form>
      <el-button @click="getFile" :disabled="limitFileSize" type="primary" size="medium" class="uploadBtn">上传文件</el-button>
-    <div class="el-upload__tip">请上传不超过5MB的文件</div>
+    <div class="el-upload__tip">请上传不超过{{maxSizeStr}}的文件</div>
     <div class="list">
       <transition  name="list" tag="p">
         <div class="list-item" v-if="file" >
@@ -43,6 +43,9 @@ export default {
       waitUpLoad: [],
       waitNum: 0,
       limitFileSize: false,
+      maxSize: 100*1024*1024,
+      maxSizeStr: "100M",
+      fileSliceCap: 20 * 1024 * 1024, // 分片字节数
       percentage:0,
       percentageFlage: true,
       customColor: '#409eff'
@@ -56,10 +59,9 @@ export default {
     async choseFile(e) {
       const fileR = new FileReader() // 创建一个reader用来读取文件流
       const file = e.target.files[0] // 获取当前文件
-      const maxSize = 5*1024*1024
       this.file = file // file 丢全局方便后面用 可以改进为func传参形式
       this.percentage = 0
-    if(file.size<maxSize){
+    if(file.size<this.maxSize){
       fileR.readAsArrayBuffer(file) // 把文件读成ArrayBuffer  主要为了保持跟后端的流一致
       fileR.onload = async e => {
         // 读成arrayBuffer的回调 e 为方法自带参数 相当于 dom的e 流存在e.target.result 中
@@ -67,15 +69,14 @@ export default {
         let spark = new SparkMD5.ArrayBuffer() // 创建md5制造工具 （md5用于检测文件一致性 这里不懂就打电话问我）
         spark.append(blob) // 文件流丢进工具
         this.fileMd5 = spark.end() // 工具结束 产生一个a 总文件的md5
-        const FileSliceCap = 1 * 1024 * 1024 // 分片字节数
         let start = 0 // 定义分片开始切的地方
         let end = 0 // 每片结束切的地方a
         let i = 0 // 第几片
         this.formDataList = [] // 分片存储的一个池子 丢全局
         while (end < file.size) {
           // 当结尾数字大于文件总size的时候 结束切片
-          start = i * FileSliceCap // 计算每片开始位置
-          end = (i + 1) * FileSliceCap // 计算每片结束位置
+          start = i * this.fileSliceCap // 计算每片开始位置
+          end = (i + 1) * this.fileSliceCap // 计算每片结束位置
           var fileSlice = this.file.slice(start, end) // 开始切  file.slice 为 h5方法 对文件切片 参数为 起止字节数
           const formData = new window.FormData() // 创建FormData用于存储传给后端的信息
           formData.append('fileMd5', this.fileMd5) // 存储总文件的Md5 让后端知道自己是谁的切片
@@ -109,7 +110,7 @@ export default {
       }
       } else {
          this.limitFileSize = true
-         this.$message('请上传小于5M文件')
+         this.$message(`请上传小于${this.maxSizeStr}件`)
       }
     },
     getFile() {
