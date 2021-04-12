@@ -7,7 +7,6 @@ import (
 	"go.uber.org/zap"
 	"mime/multipart"
 	"path/filepath"
-	"time"
 )
 
 type AliyunOSS struct{}
@@ -27,7 +26,8 @@ func (*AliyunOSS) UploadFile(file *multipart.FileHeader) (string, string, error)
 	}
 
 	//上传阿里云路径 文件名格式 自己可以改 建议保证唯一性
-	yunFileTmpPath := filepath.Join("uploads", time.Now().Format("2006-01-02")) + "/" + file.Filename
+	fid := NewFilePath(file.Filename)
+	yunFileTmpPath := filepath.Join("uploads", fid)
 
 	// 上传文件流。
 	err = bucket.PutObject(yunFileTmpPath, f)

@@ -25,6 +25,7 @@ yarn-error.log*
 go.sum
 /server/log/
 /server/gva
+/server/gin-vue-admin
 /server/latest_log
 
 *.iml
