@@ -101,6 +101,44 @@ var doc = `{
                 }
             }
         },
+        "/api/deleteApisByIds": {
+            "delete": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "SysApi"
+                ],
+                "summary": "删除选中Api",
+                "parameters": [
+                    {
+                        "description": "ID",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.IdsReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"success\":true,\"data\":{},\"msg\":\"删除成功\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
         "/api/getAllApis": {
             "post": {
                 "security": [
@@ -2504,6 +2542,234 @@ var doc = `{
                 }
             }
         },
+        "/testTv/createTestTv": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "TestTv"
+                ],
+                "summary": "创建TestTv",
+                "parameters": [
+                    {
+                        "description": "创建TestTv",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.TestTv"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"success\":true,\"data\":{},\"msg\":\"获取成功\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/testTv/deleteTestTv": {
+            "delete": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "TestTv"
+                ],
+                "summary": "删除TestTv",
+                "parameters": [
+                    {
+                        "description": "删除TestTv",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.TestTv"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"success\":true,\"data\":{},\"msg\":\"删除成功\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/testTv/deleteTestTvByIds": {
+            "delete": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "TestTv"
+                ],
+                "summary": "批量删除TestTv",
+                "parameters": [
+                    {
+                        "description": "批量删除TestTv",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.IdsReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"success\":true,\"data\":{},\"msg\":\"批量删除成功\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/testTv/findTestTv": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "TestTv"
+                ],
+                "summary": "用id查询TestTv",
+                "parameters": [
+                    {
+                        "description": "用id查询TestTv",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.TestTv"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"success\":true,\"data\":{},\"msg\":\"查询成功\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/testTv/getTestTvList": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "TestTv"
+                ],
+                "summary": "分页获取TestTv列表",
+                "parameters": [
+                    {
+                        "description": "分页获取TestTv列表",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.TestTvSearch"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"success\":true,\"data\":{},\"msg\":\"获取成功\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/testTv/updateTestTv": {
+            "put": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "TestTv"
+                ],
+                "summary": "更新TestTv",
+                "parameters": [
+                    {
+                        "description": "更新TestTv",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.TestTv"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"success\":true,\"data\":{},\"msg\":\"更新成功\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
         "/user/changePassword": {
             "put": {
                 "security": [
@@ -2720,418 +2986,6 @@ var doc = `{
                     }
                 }
             }
-        },
-        "/workflowProcess/completeWorkflowMove": {
-            "post": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ],
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "WorkflowProcess"
-                ],
-                "summary": "提交工作流",
-                "responses": {
-                    "200": {
-                        "description": "{\"success\":true,\"data\":{},\"msg\":\"获取成功\"}",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
-        "/workflowProcess/createWorkflowProcess": {
-            "post": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ],
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "WorkflowProcess"
-                ],
-                "summary": "创建WorkflowProcess",
-                "parameters": [
-                    {
-                        "description": "创建WorkflowProcess",
-                        "name": "data",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/model.WorkflowProcess"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "{\"success\":true,\"data\":{},\"msg\":\"获取成功\"}",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
-        "/workflowProcess/deleteWorkflowProcess": {
-            "delete": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ],
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "WorkflowProcess"
-                ],
-                "summary": "删除WorkflowProcess",
-                "parameters": [
-                    {
-                        "description": "删除WorkflowProcess",
-                        "name": "data",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/model.WorkflowProcess"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "{\"success\":true,\"data\":{},\"msg\":\"删除成功\"}",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
-        "/workflowProcess/deleteWorkflowProcessByIds": {
-            "delete": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ],
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "WorkflowProcess"
-                ],
-                "summary": "批量删除WorkflowProcess",
-                "parameters": [
-                    {
-                        "description": "批量删除WorkflowProcess",
-                        "name": "data",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/request.IdsReq"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "{\"success\":true,\"data\":{},\"msg\":\"删除成功\"}",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
-        "/workflowProcess/findWorkflowProcess": {
-            "get": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ],
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "WorkflowProcess"
-                ],
-                "summary": "用id查询WorkflowProcess",
-                "parameters": [
-                    {
-                        "description": "用id查询WorkflowProcess",
-                        "name": "data",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/model.WorkflowProcess"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "{\"success\":true,\"data\":{},\"msg\":\"查询成功\"}",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
-        "/workflowProcess/findWorkflowStep": {
-            "get": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ],
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "WorkflowProcess"
-                ],
-                "summary": "用id查询工作流步骤",
-                "parameters": [
-                    {
-                        "description": "用id查询WorkflowProcess",
-                        "name": "data",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/model.WorkflowProcess"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "{\"success\":true,\"data\":{},\"msg\":\"查询成功\"}",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
-        "/workflowProcess/getMyNeed": {
-            "get": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ],
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "WorkflowProcess"
-                ],
-                "summary": "我的待办",
-                "responses": {
-                    "200": {
-                        "description": "{\"success\":true,\"data\":{},\"msg\":\"获取成功\"}",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
-        "/workflowProcess/getMyStated": {
-            "get": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ],
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "WorkflowProcess"
-                ],
-                "summary": "我发起的工作流",
-                "responses": {
-                    "200": {
-                        "description": "{\"success\":true,\"data\":{},\"msg\":\"获取成功\"}",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
-        "/workflowProcess/getWorkflowMoveByID": {
-            "get": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ],
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "WorkflowProcess"
-                ],
-                "summary": "根据id获取当前节点详情和历史",
-                "parameters": [
-                    {
-                        "description": "根据id获取当前节点详情和过往",
-                        "name": "data",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/request.GetById"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "{\"success\":true,\"data\":{},\"msg\":\"获取成功\"}",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
-        "/workflowProcess/getWorkflowProcessList": {
-            "get": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ],
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "WorkflowProcess"
-                ],
-                "summary": "分页获取WorkflowProcess列表",
-                "parameters": [
-                    {
-                        "description": "分页获取WorkflowProcess列表",
-                        "name": "data",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/request.WorkflowProcessSearch"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "{\"success\":true,\"data\":{},\"msg\":\"获取成功\"}",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
-        "/workflowProcess/startWorkflow": {
-            "post": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ],
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "WorkflowProcess"
-                ],
-                "summary": "开启工作流",
-                "responses": {
-                    "200": {
-                        "description": "{\"success\":true,\"data\":{},\"msg\":\"获取成功\"}",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
-        "/workflowProcess/updateWorkflowProcess": {
-            "put": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ],
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "WorkflowProcess"
-                ],
-                "summary": "更新WorkflowProcess",
-                "parameters": [
-                    {
-                        "description": "更新WorkflowProcess",
-                        "name": "data",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/model.WorkflowProcess"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "{\"success\":true,\"data\":{},\"msg\":\"更新成功\"}",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
         }
     },
     "definitions": {
@@ -3151,6 +3005,50 @@ var doc = `{
                     "type": "string"
                 },
                 "endpoint": {
+                    "type": "string"
+                }
+            }
+        },
+        "config.Autocode": {
+            "type": "object",
+            "properties": {
+                "root": {
+                    "type": "string"
+                },
+                "server": {
+                    "type": "string"
+                },
+                "serverApi": {
+                    "type": "string"
+                },
+                "serverInitialize": {
+                    "type": "string"
+                },
+                "serverModel": {
+                    "type": "string"
+                },
+                "serverRequest": {
+                    "type": "string"
+                },
+                "serverRouter": {
+                    "type": "string"
+                },
+                "serverService": {
+                    "type": "string"
+                },
+                "web": {
+                    "type": "string"
+                },
+                "webApi": {
+                    "type": "string"
+                },
+                "webFlow": {
+                    "type": "string"
+                },
+                "webForm": {
+                    "type": "string"
+                },
+                "webTable": {
                     "type": "string"
                 }
             }
@@ -3311,6 +3209,11 @@ var doc = `{
                 "aliyunOSS": {
                     "type": "object",
                     "$ref": "#/definitions/config.AliyunOSS"
+                },
+                "autoCode": {
+                    "description": "auto",
+                    "type": "object",
+                    "$ref": "#/definitions/config.Autocode"
                 },
                 "captcha": {
                     "type": "object",
@@ -3888,241 +3791,23 @@ var doc = `{
                 }
             }
         },
-        "model.WorkflowEdge": {
+        "model.TestTv": {
             "type": "object",
             "properties": {
-                "clazz": {
-                    "type": "string"
-                },
-                "conditionExpression": {
+                "channel": {
                     "type": "string"
                 },
                 "createdAt": {
                     "type": "string"
                 },
-                "description": {
-                    "type": "string"
-                },
-                "endPoint": {
-                    "description": "终点信息",
-                    "type": "object",
-                    "$ref": "#/definitions/model.WorkflowEndPoint"
-                },
-                "hideIcon": {
-                    "type": "boolean"
-                },
-                "id": {
-                    "type": "string"
-                },
-                "label": {
-                    "type": "string"
-                },
-                "reverse": {
-                    "type": "boolean"
-                },
-                "seq": {
-                    "type": "string"
-                },
-                "shape": {
-                    "type": "string"
-                },
-                "source": {
-                    "type": "string"
-                },
-                "sourceAnchor": {
-                    "type": "integer"
-                },
-                "startPoint": {
-                    "description": "起点信息",
-                    "type": "object",
-                    "$ref": "#/definitions/model.WorkflowStartPoint"
-                },
-                "target": {
-                    "type": "string"
-                },
-                "targetAnchor": {
-                    "type": "integer"
-                },
-                "updatedAt": {
-                    "type": "string"
-                }
-            }
-        },
-        "model.WorkflowEndPoint": {
-            "type": "object",
-            "properties": {
-                "createdAt": {
-                    "type": "string"
-                },
                 "id": {
                     "type": "integer"
-                },
-                "index": {
-                    "type": "integer"
-                },
-                "updatedAt": {
-                    "type": "string"
-                },
-                "workflowEdgeID": {
-                    "type": "string"
-                },
-                "x": {
-                    "type": "number"
-                },
-                "y": {
-                    "type": "number"
-                }
-            }
-        },
-        "model.WorkflowNode": {
-            "type": "object",
-            "properties": {
-                "assignType": {
-                    "type": "string"
-                },
-                "assignValue": {
-                    "type": "string"
-                },
-                "clazz": {
-                    "type": "string"
-                },
-                "content": {
-                    "type": "string"
-                },
-                "createdAt": {
-                    "type": "string"
-                },
-                "cycle": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "dueDate": {
-                    "type": "string"
-                },
-                "duration": {
-                    "type": "string"
-                },
-                "hideIcon": {
-                    "type": "boolean"
-                },
-                "id": {
-                    "type": "string"
-                },
-                "label": {
-                    "type": "string"
-                },
-                "shape": {
-                    "type": "string"
-                },
-                "stateValue": {
-                    "type": "string"
-                },
-                "subject": {
-                    "type": "string"
-                },
-                "success": {
-                    "type": "boolean"
-                },
-                "to": {
-                    "type": "string"
-                },
-                "type": {
-                    "type": "string"
-                },
-                "updatedAt": {
-                    "type": "string"
-                },
-                "view": {
-                    "type": "string"
-                },
-                "waitState": {
-                    "type": "string"
-                },
-                "workflowProcessID": {
-                    "type": "string"
-                },
-                "x": {
-                    "type": "number"
-                },
-                "y": {
-                    "type": "number"
-                }
-            }
-        },
-        "model.WorkflowProcess": {
-            "type": "object",
-            "properties": {
-                "category": {
-                    "type": "string"
-                },
-                "clazz": {
-                    "type": "string"
-                },
-                "createdAt": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "edges": {
-                    "description": "流程链接数据",
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/model.WorkflowEdge"
-                    }
-                },
-                "hideIcon": {
-                    "type": "boolean"
-                },
-                "id": {
-                    "type": "string"
-                },
-                "label": {
-                    "type": "string"
                 },
                 "name": {
                     "type": "string"
                 },
-                "nodes": {
-                    "description": "流程节点数据",
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/model.WorkflowNode"
-                    }
-                },
                 "updatedAt": {
                     "type": "string"
-                },
-                "view": {
-                    "type": "string"
-                }
-            }
-        },
-        "model.WorkflowStartPoint": {
-            "type": "object",
-            "properties": {
-                "createdAt": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "index": {
-                    "type": "integer"
-                },
-                "updatedAt": {
-                    "type": "string"
-                },
-                "workflowEdgeID": {
-                    "type": "string"
-                },
-                "x": {
-                    "type": "number"
-                },
-                "y": {
-                    "type": "number"
                 }
             }
         },
@@ -4437,46 +4122,20 @@ var doc = `{
                 }
             }
         },
-        "request.WorkflowProcessSearch": {
+        "request.TestTvSearch": {
             "type": "object",
             "properties": {
-                "category": {
-                    "type": "string"
-                },
-                "clazz": {
+                "channel": {
                     "type": "string"
                 },
                 "createdAt": {
                     "type": "string"
                 },
-                "description": {
-                    "type": "string"
-                },
-                "edges": {
-                    "description": "流程链接数据",
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/model.WorkflowEdge"
-                    }
-                },
-                "hideIcon": {
-                    "type": "boolean"
-                },
                 "id": {
-                    "type": "string"
-                },
-                "label": {
-                    "type": "string"
+                    "type": "integer"
                 },
                 "name": {
                     "type": "string"
-                },
-                "nodes": {
-                    "description": "流程节点数据",
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/model.WorkflowNode"
-                    }
                 },
                 "page": {
                     "type": "integer"
@@ -4485,9 +4144,6 @@ var doc = `{
                     "type": "integer"
                 },
                 "updatedAt": {
-                    "type": "string"
-                },
-                "view": {
                     "type": "string"
                 }
             }
