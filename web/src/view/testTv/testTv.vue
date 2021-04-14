@@ -4,10 +4,10 @@
       <el-form :inline="true" :model="searchInfo" class="demo-form-inline">
         <el-form-item label="名字">
           <el-input placeholder="搜索条件" v-model="searchInfo.name"></el-input>
-        </el-form-item>    
+        </el-form-item>
         <el-form-item label="频道">
           <el-input placeholder="搜索条件" v-model="searchInfo.channel"></el-input>
-        </el-form-item>    
+        </el-form-item>
         <el-form-item>
           <el-button @click="onSubmit" type="primary">查询</el-button>
         </el-form-item>
@@ -17,11 +17,15 @@
         <el-form-item>
           <el-popover placement="top" v-model="deleteVisible" width="160">
             <p>确定要删除吗？</p>
-              <div style="text-align: right; margin: 0">
-                <el-button @click="deleteVisible = false" size="mini" type="text">取消</el-button>
-                <el-button @click="onDelete" size="mini" type="primary">确定</el-button>
-              </div>
-            <el-button icon="el-icon-delete" size="mini" slot="reference" type="danger">批量删除</el-button>
+            <div style="text-align: right; margin: 0">
+              <el-button @click="deleteVisible = false" size="mini" type="text"
+                >取消</el-button
+              >
+              <el-button @click="onDelete" size="mini" type="primary">确定</el-button>
+            </div>
+            <el-button icon="el-icon-delete" size="mini" slot="reference" type="danger"
+              >批量删除</el-button
+            >
           </el-popover>
         </el-form-item>
       </el-form>
@@ -35,19 +39,32 @@
       style="width: 100%"
       tooltip-effect="dark"
     >
-    <el-table-column type="selection" width="55"></el-table-column>
-    <el-table-column label="日期" width="180">
-         <template slot-scope="scope">{{scope.row.CreatedAt|formatDate}}</template>
-    </el-table-column>
-    
-    <el-table-column label="名字" prop="name" width="120"></el-table-column> 
-    
-    <el-table-column label="频道" prop="channel" width="120"></el-table-column> 
-    
+      <el-table-column type="selection" width="55"></el-table-column>
+      <el-table-column label="日期" width="180">
+        <template slot-scope="scope">{{ scope.row.CreatedAt | formatDate }}</template>
+      </el-table-column>
+
+      <el-table-column label="名字" prop="name" width="120"></el-table-column>
+
+      <el-table-column label="频道" prop="channel" width="120"></el-table-column>
+
       <el-table-column label="按钮组">
         <template slot-scope="scope">
-          <el-button class="table-button" @click="updateTestTv(scope.row)" size="small" type="primary" icon="el-icon-edit">变更</el-button>
-          <el-button type="danger" icon="el-icon-delete" size="mini" @click="deleteRow(scope.row)">删除</el-button>
+          <el-button
+            class="table-button"
+            @click="updateTestTv(scope.row)"
+            size="small"
+            type="primary"
+            icon="el-icon-edit"
+            >变更</el-button
+          >
+          <el-button
+            type="danger"
+            icon="el-icon-delete"
+            size="mini"
+            @click="deleteRow(scope.row)"
+            >删除</el-button
+          >
         </template>
       </el-table-column>
     </el-table>
@@ -56,23 +73,27 @@
       :current-page="page"
       :page-size="pageSize"
       :page-sizes="[10, 30, 50, 100]"
-      :style="{float:'right',padding:'20px'}"
+      :style="{ float: 'right', padding: '20px' }"
       :total="total"
       @current-change="handleCurrentChange"
       @size-change="handleSizeChange"
       layout="total, sizes, prev, pager, next, jumper"
     ></el-pagination>
 
-    <el-dialog :before-close="closeDialog" :visible.sync="dialogFormVisible" title="弹窗操作">
+    <el-dialog
+      :before-close="closeDialog"
+      :visible.sync="dialogFormVisible"
+      title="弹窗操作"
+    >
       <el-form :model="formData" label-position="right" label-width="80px">
-         <el-form-item label="名字:">
-            <el-input v-model="formData.name" clearable placeholder="请输入" ></el-input>
-      </el-form-item>
-       
-         <el-form-item label="频道:">
-            <el-input v-model="formData.channel" clearable placeholder="请输入" ></el-input>
-      </el-form-item>
-       </el-form>
+        <el-form-item label="名字:">
+          <el-input v-model="formData.name" clearable placeholder="请输入"></el-input>
+        </el-form-item>
+
+        <el-form-item label="频道:">
+          <el-input v-model="formData.channel" clearable placeholder="请输入"></el-input>
+        </el-form-item>
+      </el-form>
       <div class="dialog-footer" slot="footer">
         <el-button @click="closeDialog">取 消</el-button>
         <el-button @click="enterDialog" type="primary">确 定</el-button>
@@ -83,17 +104,17 @@
 
 <script>
 import {
-    createTestTv,
-    deleteTestTv,
-    deleteTestTvByIds,
-    updateTestTv,
-    findTestTv,
-    getTestTvList
-} from "@/api/testTv";  //  此处请自行替换地址
+  createTestTv,
+  deleteTestTv,
+  deleteTestTvByIds,
+  updateTestTv,
+  findTestTv,
+  getTestTvList,
+} from "@/api/testTv"; //  此处请自行替换地址
 import { formatTimeToStr } from "@/utils/date";
 import infoList from "@/mixins/infoList";
 export default {
-  name: "TestTv",
+  name: "testTv",
   mixins: [infoList],
   data() {
     return {
@@ -101,15 +122,15 @@ export default {
       dialogFormVisible: false,
       type: "",
       deleteVisible: false,
-      multipleSelection: [],formData: {
-            name:"",
-            channel:"",
-            
-      }
+      multipleSelection: [],
+      formData: {
+        name: "aaa",
+        channel: "aaa",
+      },
     };
   },
   filters: {
-    formatDate: function(time) {
+    formatDate: function (time) {
       if (time != null && time != "") {
         var date = new Date(time);
         return formatTimeToStr(date, "yyyy-MM-dd hh:mm:ss");
@@ -117,59 +138,59 @@ export default {
         return "";
       }
     },
-    formatBoolean: function(bool) {
+    formatBoolean: function (bool) {
       if (bool != null) {
-        return bool ? "是" :"否";
+        return bool ? "是" : "否";
       } else {
         return "";
       }
-    }
+    },
   },
   methods: {
-      //条件搜索前端看此方法
-      onSubmit() {
-        this.page = 1
-        this.pageSize = 10      
-        this.getTableData()
-      },
-      handleSelectionChange(val) {
-        this.multipleSelection = val
-      },
-      deleteRow(row){
-        this.$confirm('确定要删除吗?', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }).then(() => {
-           this.deleteTestTv(row);
+    //条件搜索前端看此方法
+    onSubmit() {
+      this.page = 1;
+      this.pageSize = 10;
+      this.getTableData();
+    },
+    handleSelectionChange(val) {
+      this.multipleSelection = val;
+    },
+    deleteRow(row) {
+      this.$confirm("确定要删除吗?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning",
+      }).then(() => {
+        this.deleteTestTv(row);
+      });
+    },
+    async onDelete() {
+      const ids = [];
+      if (this.multipleSelection.length == 0) {
+        this.$message({
+          type: "warning",
+          message: "请选择要删除的数据",
         });
-      },
-      async onDelete() {
-        const ids = []
-        if(this.multipleSelection.length == 0){
-          this.$message({
-            type: 'warning',
-            message: '请选择要删除的数据'
-          })
-          return
+        return;
+      }
+      this.multipleSelection &&
+        this.multipleSelection.map((item) => {
+          ids.push(item.ID);
+        });
+      const res = await deleteTestTvByIds({ ids });
+      if (res.code == 0) {
+        this.$message({
+          type: "success",
+          message: "删除成功",
+        });
+        if (this.tableData.length == ids.length) {
+          this.page--;
         }
-        this.multipleSelection &&
-          this.multipleSelection.map(item => {
-            ids.push(item.ID)
-          })
-        const res = await deleteTestTvByIds({ ids })
-        if (res.code == 0) {
-          this.$message({
-            type: 'success',
-            message: '删除成功'
-          })
-          if (this.tableData.length == ids.length) {
-              this.page--;
-          }
-          this.deleteVisible = false
-          this.getTableData()
-        }
-      },
+        this.deleteVisible = false;
+        this.getTableData();
+      }
+    },
     async updateTestTv(row) {
       const res = await findTestTv({ ID: row.ID });
       this.type = "update";
@@ -181,9 +202,8 @@ export default {
     closeDialog() {
       this.dialogFormVisible = false;
       this.formData = {
-          name:"",
-          channel:"",
-          
+        name: "",
+        channel: "",
       };
     },
     async deleteTestTv(row) {
@@ -191,10 +211,10 @@ export default {
       if (res.code == 0) {
         this.$message({
           type: "success",
-          message: "删除成功"
+          message: "删除成功",
         });
         if (this.tableData.length == 1) {
-            this.page--;
+          this.page--;
         }
         this.getTableData();
       }
@@ -214,9 +234,9 @@ export default {
       }
       if (res.code == 0) {
         this.$message({
-          type:"success",
-          message:"创建/更改成功"
-        })
+          type: "success",
+          message: "创建/更改成功",
+        });
         this.closeDialog();
         this.getTableData();
       }
@@ -224,14 +244,12 @@ export default {
     openDialog() {
       this.type = "create";
       this.dialogFormVisible = true;
-    }
+    },
   },
   async created() {
     await this.getTableData();
-  
-}
+  },
 };
 </script>
 
-<style>
-</style>
+<style></style>
