@@ -68,8 +68,7 @@ func GetTestTv(id uint) (err error, testTv model.TestTv) {
 //@return: err error, list interface{}, total int64
 
 func GetTestTvInfoList(info request.TestTvSearch) (err error, list interface{}, total int64) {
-	limit := info.PageSize
-	offset := info.PageSize * (info.Page - 1)
+	limit, offset := info.GetLimitOffset()
     // 创建db
 	db := global.GVA_DB.Model(&model.TestTv{})
     var testTvs []model.TestTv

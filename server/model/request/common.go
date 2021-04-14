@@ -6,6 +6,12 @@ type PageInfo struct {
 	PageSize int `json:"pageSize" form:"pageSize"`
 }
 
+func (info PageInfo) GetLimitOffset() (limit int, offset int){
+	limit = info.PageSize
+	offset = info.PageSize * (info.Page - 1)
+	return
+}
+
 // Find by id structure
 type GetById struct {
 	Id float64 `json:"id" form:"id"`
