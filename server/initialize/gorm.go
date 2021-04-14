@@ -4,6 +4,7 @@ import (
 	"gin-vue-admin/global"
 	"gin-vue-admin/initialize/internal"
 	"gin-vue-admin/model"
+	"gin-vue-admin/source"
 	"os"
 
 	"go.uber.org/zap"
@@ -58,6 +59,12 @@ func MysqlTables(db *gorm.DB) {
 		os.Exit(0)
 	}
 	global.GVA_LOG.Info("register table success")
+	err = source.TestTv.Init()
+	if err != nil {
+		global.GVA_LOG.Error("TestTv init err", zap.Any("err", err))
+	}else{
+		global.GVA_LOG.Info("TestTv init ok")
+	}
 }
 
 //
