@@ -2,17 +2,20 @@
   <div>
     <div class="search-term">
       <el-form :inline="true" :model="searchInfo" class="demo-form-inline">
-        <el-form-item label="名字">
+        <el-form-item label="区域">
+          <el-input placeholder="搜索条件" v-model="searchInfo.area"></el-input>
+        </el-form-item>
+         <el-form-item label="名字">
           <el-input placeholder="搜索条件" v-model="searchInfo.name"></el-input>
         </el-form-item>
-        <el-form-item label="频道">
-          <el-input placeholder="搜索条件" v-model="searchInfo.channel"></el-input>
+        <el-form-item label="上线时间">
+          <el-input placeholder="搜索条件" v-model="searchInfo.upTime"></el-input>
         </el-form-item>
         <el-form-item>
           <el-button @click="onSubmit" type="primary">查询</el-button>
         </el-form-item>
         <el-form-item>
-          <el-button @click="openDialog" type="primary">新增测试电视</el-button>
+          <el-button @click="openDialog" type="primary">新增测试游戏表</el-button>
         </el-form-item>
         <el-form-item>
           <el-popover placement="top" v-model="deleteVisible" width="160">
@@ -46,13 +49,15 @@
 
       <el-table-column label="名字" prop="name" width="120"></el-table-column>
 
-      <el-table-column label="频道" prop="channel" width="120"></el-table-column>
+      <el-table-column label="区域" prop="area" width="120"></el-table-column>
+
+      <el-table-column label="上线时间" prop="upTime" width="120"></el-table-column>
 
       <el-table-column label="按钮组">
         <template slot-scope="scope">
           <el-button
             class="table-button"
-            @click="updateTestTv(scope.row)"
+            @click="updateTestGame(scope.row)"
             size="small"
             type="primary"
             icon="el-icon-edit"
@@ -90,8 +95,17 @@
           <el-input v-model="formData.name" clearable placeholder="请输入"></el-input>
         </el-form-item>
 
-        <el-form-item label="频道:">
-          <el-input v-model="formData.channel" clearable placeholder="请输入"></el-input>
+        <el-form-item label="区域:">
+          <el-input v-model="formData.area" clearable placeholder="请输入"></el-input>
+        </el-form-item>
+
+        <el-form-item label="上线时间:">
+          <el-date-picker
+            type="date"
+            placeholder="选择日期"
+            v-model="formData.upTime"
+            clearable
+          ></el-date-picker>
         </el-form-item>
       </el-form>
       <div class="dialog-footer" slot="footer">
@@ -104,28 +118,29 @@
 
 <script>
 import {
-  createTestTv,
-  deleteTestTv,
-  deleteTestTvByIds,
-  updateTestTv,
-  findTestTv,
-  getTestTvList,
-} from "@/api/testTv"; //  此处请自行替换地址
+  createTestGame,
+  deleteTestGame,
+  deleteTestGameByIds,
+  updateTestGame,
+  findTestGame,
+  getTestGameList,
+} from "@/api/testGame"; //  此处请自行替换地址
 import { formatTimeToStr } from "@/utils/date";
 import infoList from "@/mixins/infoList";
 export default {
-  name: "testTv",
+  name: "TestGame",
   mixins: [infoList],
   data() {
     return {
-      listApi: getTestTvList,
+      listApi: getTestGameList,
       dialogFormVisible: false,
       type: "",
       deleteVisible: false,
       multipleSelection: [],
       formData: {
         name: "",
-        channel: "",
+        area: "",
+        upTime: new Date(),
       },
     };
   },
@@ -162,7 +177,7 @@ export default {
         cancelButtonText: "取消",
         type: "warning",
       }).then(() => {
-        this.deleteTestTv(row);
+        this.deleteTestGame(row);
       });
     },
     async onDelete() {
@@ -178,7 +193,7 @@ export default {
         this.multipleSelection.map((item) => {
           ids.push(item.ID);
         });
-      const res = await deleteTestTvByIds({ ids });
+      const res = await deleteTestGameByIds({ ids });
       if (res.code == 0) {
         this.$message({
           type: "success",
@@ -191,11 +206,11 @@ export default {
         this.getTableData();
       }
     },
-    async updateTestTv(row) {
-      const res = await findTestTv({ ID: row.ID });
+    async updateTestGame(row) {
+      const res = await findTestGame({ ID: row.ID });
       this.type = "update";
       if (res.code == 0) {
-        this.formData = res.data.retestTv;
+        this.formData = res.data.retestGame;
         this.dialogFormVisible = true;
       }
     },
@@ -203,11 +218,12 @@ export default {
       this.dialogFormVisible = false;
       this.formData = {
         name: "",
-        channel: "",
+        area: "",
+        upTime: new Date(),
       };
     },
-    async deleteTestTv(row) {
-      const res = await deleteTestTv({ ID: row.ID });
+    async deleteTestGame(row) {
+      const res = await deleteTestGame({ ID: row.ID });
       if (res.code == 0) {
         this.$message({
           type: "success",
@@ -223,13 +239,13 @@ export default {
       let res;
       switch (this.type) {
         case "create":
-          res = await createTestTv(this.formData);
+          res = await createTestGame(this.formData);
           break;
         case "update":
-          res = await updateTestTv(this.formData);
+          res = await updateTestGame(this.formData);
           break;
         default:
-          res = await createTestTv(this.formData);
+          res = await createTestGame(this.formData);
           break;
       }
       if (res.code == 0) {
