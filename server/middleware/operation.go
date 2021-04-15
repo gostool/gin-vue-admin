@@ -18,6 +18,10 @@ func OperationRecord() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		var body []byte
 		var userId int
+		if c.Request.Method == http.MethodGet {
+			c.Next()
+			return
+		}
 		if c.Request.Method != http.MethodGet {
 			var err error
 			body, err = ioutil.ReadAll(c.Request.Body)
