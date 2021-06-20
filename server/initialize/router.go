@@ -25,12 +25,12 @@ func Routers() *gin.Engine {
 	Router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 	global.GVA_LOG.Info("register swagger handler")
 	// 方便统一添加路由组前缀 多服务器上线使用
-	PublicGroup := Router.Group("")
+	PublicGroup := Router.Group("/api")
 	{
 		router.InitBaseRouter(PublicGroup) // 注册基础功能路由 不做鉴权
 		router.InitInitRouter(PublicGroup) // 自动初始化相关
 	}
-	PrivateGroup := Router.Group("")
+	PrivateGroup := Router.Group("/api")
 	PrivateGroup.Use(middleware.JWTAuth()).Use(middleware.CasbinHandler())
 	{
 		router.InitApiRouter(PrivateGroup)                   // 注册功能api路由

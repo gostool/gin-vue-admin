@@ -54,15 +54,14 @@ captcha:
 
 # mysql connect configuration
 mysql:
-  path: ''
-  config: ''
-  db-name: ''
-  username: ''
-  password: ''
+  username: root
+  password: '8ewjoZ2rCE9mmNJ1'
+  path: '127.0.0.1:3306'
+  db-name: 'qmPlus'
+  config: 'charset=utf8mb4&parseTime=True&loc=Local'
   max-idle-conns: 10
-  max-open-conns: 100
+  max-open-conns: 10
   log-mode: false
-  log-zap: ""
 
 # local configuration
 local:

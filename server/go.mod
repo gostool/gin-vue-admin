@@ -11,21 +11,27 @@ require (
 	github.com/casbin/casbin v1.9.1
 	github.com/casbin/casbin/v2 v2.26.1
 	github.com/casbin/gorm-adapter/v3 v3.0.2
+	github.com/cpuguy83/go-md2man/v2 v2.0.0 // indirect
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/fsnotify/fsnotify v1.4.9
 	github.com/fvbock/endless v0.0.0-20170109170031-447134032cb6
 	github.com/gin-gonic/gin v1.7.1
 	github.com/go-ole/go-ole v1.2.5 // indirect
+	github.com/go-openapi/jsonreference v0.19.6 // indirect
+	github.com/go-openapi/spec v0.20.3 // indirect
+	github.com/go-openapi/swag v0.19.15 // indirect
 	github.com/go-redis/redis v6.15.9+incompatible
 	github.com/go-sql-driver/mysql v1.6.0
 	github.com/gookit/color v1.4.2
 	github.com/jordan-wright/email v4.0.1-0.20210109023952-943e75fe5223+incompatible
 	github.com/lestrrat-go/file-rotatelogs v2.4.0+incompatible
 	github.com/lestrrat-go/strftime v1.0.4 // indirect
+	github.com/mailru/easyjson v0.7.7 // indirect
 	github.com/mojocn/base64Captcha v1.3.4
 	github.com/onsi/ginkgo v1.16.1 // indirect
 	github.com/onsi/gomega v1.11.0 // indirect
 	github.com/qiniu/api.v7/v7 v7.8.2
+	github.com/russross/blackfriday/v2 v2.1.0 // indirect
 	github.com/satori/go.uuid v1.2.0
 	github.com/shirou/gopsutil v3.21.3+incompatible
 	github.com/spf13/viper v1.7.1
@@ -34,7 +40,11 @@ require (
 	github.com/tencentyun/cos-go-sdk-v5 v0.7.24
 	github.com/tklauser/go-sysconf v0.3.5 // indirect
 	github.com/unrolled/secure v1.0.8
+	github.com/urfave/cli/v2 v2.3.0 // indirect
 	go.uber.org/zap v1.16.0
+	golang.org/x/net v0.0.0-20210614182718-04defd469f4e // indirect
+	golang.org/x/sys v0.0.0-20210616094352-59db8d763f22 // indirect
+	golang.org/x/tools v0.1.3 // indirect
 	gorm.io/driver/mysql v1.0.5
 	gorm.io/gorm v1.21.7
 )
